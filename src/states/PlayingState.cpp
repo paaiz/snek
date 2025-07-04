@@ -2,6 +2,8 @@
 #include "include/MainMenuState.hpp" // Kalau kamu mau bisa balik ke menu
 #include <SFML/Window/Event.hpp>
 
+#include "../utils/TextUtils.hpp"
+
 int BLOCK_SIZE = 40;
 int WIDTH = 800;
 int HEIGHT = 600;
@@ -12,10 +14,9 @@ PlayingState::PlayingState()
     font.loadFromFile("./src/assets/fonts/arial.ttf");
 
     gameOverText.setFont(font);
-    gameOverText.setString("Game Over!\nPress ENTER to restart\nPress ESC to quit");
+    gameOverText.setString("Game Over!\n\nPress ENTER to restart\nPress ESC to go to Main Menu");
     gameOverText.setCharacterSize(28);
     gameOverText.setFillColor(sf::Color::White);
-    gameOverText.setPosition(WIDTH / 2 - 180, HEIGHT / 2 - 40);
 }
 
 void PlayingState::handleInput(sf::RenderWindow& window, StateManager& manager) {
@@ -35,9 +36,8 @@ void PlayingState::handleInput(sf::RenderWindow& window, StateManager& manager) 
 
             if (gameOver) {
                 if (event.key.code == sf::Keyboard::Escape) {
-                    window.close(); // Atau bisa manager.setState(std::make_unique<MainMenuState>())
+                    manager.setState(std::make_unique<MainMenuState>());
                 } else if (event.key.code == sf::Keyboard::Enter) {
-                    // Restart state
                     manager.setState(std::make_unique<PlayingState>());
                 }
             }
@@ -66,6 +66,8 @@ void PlayingState::update(StateManager& manager) {
 }
 
 void PlayingState::draw(sf::RenderWindow& window) {
+    centerText(gameOverText, window, -50);
+
     window.clear();
     food.draw(window);
     snake.draw(window);

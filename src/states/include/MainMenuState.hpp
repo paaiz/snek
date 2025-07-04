@@ -6,7 +6,8 @@
 class MainMenuState : public GameState {
 private:
     sf::Font font;
-    sf::Text titleText, playText;
+    sf::Text titleText, titleText2, playText;
+    sf::Clock colorClock;
 
 public:
     MainMenuState();
