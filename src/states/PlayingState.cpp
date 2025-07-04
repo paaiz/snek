@@ -2,8 +2,12 @@
 #include "include/MainMenuState.hpp" // Kalau kamu mau bisa balik ke menu
 #include <SFML/Window/Event.hpp>
 
+int BLOCK_SIZE = 40;
+int WIDTH = 800;
+int HEIGHT = 600;
+
 PlayingState::PlayingState()
-    : snake(20, 800, 600), food(20, 800, 600), gameOver(false) {
+    : snake(BLOCK_SIZE, WIDTH, HEIGHT), food(BLOCK_SIZE, WIDTH, HEIGHT), gameOver(false) {
 
     font.loadFromFile("./src/assets/fonts/arial.ttf");
 
@@ -11,7 +15,7 @@ PlayingState::PlayingState()
     gameOverText.setString("Game Over!\nPress ENTER to restart\nPress ESC to quit");
     gameOverText.setCharacterSize(28);
     gameOverText.setFillColor(sf::Color::White);
-    gameOverText.setPosition(800 / 2 - 180, 600 / 2 - 40);
+    gameOverText.setPosition(WIDTH / 2 - 180, HEIGHT / 2 - 40);
 }
 
 void PlayingState::handleInput(sf::RenderWindow& window, StateManager& manager) {

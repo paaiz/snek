@@ -1,11 +1,11 @@
 #include "include/MainMenuState.hpp"
-#include "include/PlayingState.hpp" // Define later
+#include "include/PlayingState.hpp"
 
 MainMenuState::MainMenuState() {
     font.loadFromFile("./src/assets/fonts/arial.ttf");
 
     titleText.setFont(font);
-    titleText.setString("Snek Game");
+    titleText.setString("It's a Snek!");
     titleText.setCharacterSize(40);
     titleText.setPosition(250, 150);
 
