@@ -21,6 +21,7 @@ public:
     Direction getDirection() const;
     Segment getHeadPosition() const;
     void draw(sf::RenderWindow& window);
+    bool isOutOfBounds() const;
 
 private:
     std::vector<Segment> body;

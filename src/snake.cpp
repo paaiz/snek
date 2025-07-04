@@ -1,7 +1,7 @@
 #include "include/Snake.hpp"
 
 Snake::Snake(int blockSize, int width, int height)
-    : blockSize(blockSize), width(width), height(height), dir(RIGHT) {
+    : dir(RIGHT), blockSize(blockSize), width(width), height(height) {
     body = { Segment(10, 10), Segment(9, 10), Segment(8, 10) };
 }
 
@@ -32,19 +32,23 @@ void Snake::move() {
         case RIGHT: head.x++; break;
     }
 
-    // Wrap around
-    if (head.x < 0) head.x = width / blockSize - 1;
-    if (head.x >= width / blockSize) head.x = 0;
-    if (head.y < 0) head.y = height / blockSize - 1;
-    if (head.y >= height / blockSize) head.y = 0;
-
     body.insert(body.begin(), head);
     body.pop_back();
 }
 
+
 void Snake::grow() {
-    body.push_back(body.back()); // Duplicate last segment
+    body.push_back(body.back()); 
 }
+
+bool Snake::isOutOfBounds() const {
+    Segment head = getHeadPosition();
+    int maxX = width / blockSize;
+    int maxY = height / blockSize;
+
+    return head.x < 0 || head.x >= maxX || head.y < 0 || head.y >= maxY;
+}
+
 
 bool Snake::checkSelfCollision() const {
     Segment head = body.front();
