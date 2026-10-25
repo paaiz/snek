@@ -1,6 +1,6 @@
 # Snek
 **Snek** is a simple Snake game written in C++17 with [SFML](https://www.sfml-dev.org/). It includes an animated main menu, keyboard-controlled gameplay, food collection, growth, collision detection, and game-over/restart handling.
-![Gameplay screenshot](src/assets/tampilan_saat_permainan.png)
+
 ## Features
 - 800 × 600 game window
 - Animated, color-shifting title screen
